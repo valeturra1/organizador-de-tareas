@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:controller="com.example.organizadortareas.controller.CreateTaskController" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="100.0" style="-fx-background-color: #4A90E2;">
+         <children>
+            <Label layoutX="169.0" layoutY="28.0" text="Ingrese los datos de la tarea" textFill="white">
+               <font>
+                  <Font name="Poppins Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <GridPane alignment="CENTER" hgap="15.0" prefWidth="800.0" vgap="15.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="120.0" />
+            <ColumnConstraints minWidth="300.0" />
+         </columnConstraints>
+         <Label text="Título:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <font>
+               <Font name="Poppins Bold" size="15.0" />
+            </font>
+         </Label>
+         <TextField fx:id="titleField" promptText="Ingrese el título" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <font>
+               <Font name="Poppins Bold" size="15.0" />
+            </font>
+         </Label>
+         <TextArea fx:id="descriptionArea" prefRowCount="4" wrapText="true" promptText="Ingrese una descripción de la tarea" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Label text="Fecha límite:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <font>
+               <Font name="Poppins Bold" size="15.0" />
+            </font>
+         </Label>
+         <DatePicker promptText="Seleccione fecha" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label text="Hora límite:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <font>
+               <Font name="Poppins Bold" size="15.0" />
+            </font>
+         </Label>
+         <ComboBox promptText="Seleccione hora" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Label text="Prioridad:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+            <font>
+               <Font name="Poppins Bold" size="15.0" />
+            </font>
+         </Label>
+         <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <children>
+               <Button style="-fx-background-color: #B8C5D6; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Baja" />
+               <Button style="-fx-background-color: #F5A623; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Media" />
+               <Button style="-fx-background-color: #E94E4E; -fx-text-fill: white; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Alta" />
+            </children>
+         </HBox>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+         <children>
+            <Button fx:id="taskButton" maxWidth="150.0" onAction="#handleCreateTask" style="-fx-font-size: 18; -fx-background-radius: 15; -fx-font-family: 'Mozilla Headline ExtraLight';" text="Crear tarea" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
