@@ -1,5 +1,7 @@
 package com.example.organizadortareas.view;
 
+import com.example.organizadortareas.controller.CreateTaskController;
+import com.example.organizadortareas.model.TaskManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,8 +11,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class CreateTaskStage extends Stage {
+    private TaskManager manager;
 
-    public CreateTaskStage() throws IOException {
+    public CreateTaskStage(TaskManager manager) throws IOException {
+        this.manager = manager;
+
         Font.loadFont(getClass().getResourceAsStream("/fonts/MozillaHeadline-ExtraLight.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Bold.ttf"), 14);
 
@@ -18,6 +23,10 @@ public class CreateTaskStage extends Stage {
         Parent root;
         try {
             root = loader.load();
+
+            CreateTaskController controller = loader.getController();
+            controller.setTaskManager(manager);
+
         } catch (IOException e) {
             throw new IOException("Error while loading FXML file", e);
         }
@@ -30,9 +39,9 @@ public class CreateTaskStage extends Stage {
         show();
     }
 
-    public static CreateTaskStage getInstance() throws IOException {
+    public static CreateTaskStage getInstance(TaskManager manager) throws IOException {
         if (CreateTaskStage.CreateTaskStageHolder.INSTANCE == null) {
-            CreateTaskStage.CreateTaskStageHolder.INSTANCE = new CreateTaskStage();
+            CreateTaskStage.CreateTaskStageHolder.INSTANCE = new CreateTaskStage(manager);
         }
         return CreateTaskStage.CreateTaskStageHolder.INSTANCE;
     }

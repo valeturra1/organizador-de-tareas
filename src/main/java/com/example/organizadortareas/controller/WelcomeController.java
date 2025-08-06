@@ -1,5 +1,6 @@
 package com.example.organizadortareas.controller;
 
+import com.example.organizadortareas.model.TaskManager;
 import com.example.organizadortareas.view.CreateTaskStage;
 import com.example.organizadortareas.view.TaskStage;
 import javafx.fxml.FXML;
@@ -11,11 +12,12 @@ import java.io.IOException;
 public class WelcomeController {
     @FXML private Button newTaskButton;
     @FXML private Button viewTasksButton;
+    TaskManager manager = new TaskManager();
 
     @FXML
     private void handleNewTask(){
         try {
-            CreateTaskStage.getInstance().show();
+            CreateTaskStage.getInstance(manager).show();
 
             Stage actual = (Stage) newTaskButton.getScene().getWindow();
             actual.hide();
@@ -28,7 +30,7 @@ public class WelcomeController {
     @FXML
     private void handleViewTasks(){
         try {
-            TaskStage.getInstance().show();
+            TaskStage.getInstance(manager).show();
 
             Stage actual = (Stage) viewTasksButton.getScene().getWindow();
             actual.hide();

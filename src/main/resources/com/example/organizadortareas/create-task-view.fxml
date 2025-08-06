@@ -14,7 +14,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="com.example.organizadortareas.controller.CreateTaskController" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.VBox?>
+<BorderPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.organizadortareas.controller.CreateTaskController">
    <top>
       <Pane prefHeight="100.0" style="-fx-background-color: #4A90E2;">
          <children>
@@ -43,19 +44,18 @@
                <Font name="Poppins Bold" size="15.0" />
             </font>
          </Label>
-         <TextArea fx:id="descriptionArea" prefRowCount="4" wrapText="true" promptText="Ingrese una descripción de la tarea" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <TextArea fx:id="descriptionArea" prefRowCount="4" promptText="Ingrese una descripción de la tarea" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          <Label text="Fecha límite:" GridPane.columnIndex="0" GridPane.rowIndex="2">
             <font>
                <Font name="Poppins Bold" size="15.0" />
             </font>
          </Label>
-         <DatePicker promptText="Seleccione fecha" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <DatePicker fx:id="datePicker" promptText="Seleccione fecha" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <Label text="Hora límite:" GridPane.columnIndex="0" GridPane.rowIndex="3">
             <font>
                <Font name="Poppins Bold" size="15.0" />
             </font>
          </Label>
-         <ComboBox promptText="Seleccione hora" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          <Label text="Prioridad:" GridPane.columnIndex="0" GridPane.rowIndex="4">
             <font>
                <Font name="Poppins Bold" size="15.0" />
@@ -63,9 +63,16 @@
          </Label>
          <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <children>
-               <Button style="-fx-background-color: #B8C5D6; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Baja" />
-               <Button style="-fx-background-color: #F5A623; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Media" />
-               <Button style="-fx-background-color: #E94E4E; -fx-text-fill: white; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Alta" />
+               <Button fx:id="lowButton" onAction="#handleLowPriority" style="-fx-background-color: #B8C5D6; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Baja" />
+               <Button fx:id="midButton" onAction="#handleMidPriority" style="-fx-background-color: #F5A623; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Media" />
+               <Button fx:id="highButton" onAction="#handleHighPriority" style="-fx-background-color: #E94E4E; -fx-text-fill: white; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;" text="Alta" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="567.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <children>
+               <ComboBox fx:id="hourBox" promptText="Seleccione hora" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
+               <ComboBox fx:id="minuteBox" promptText="Seleccione minuto" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
+               <ComboBox fx:id="periodBox" promptText="Seleccione periodo" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
             </children>
          </HBox>
          <rowConstraints>
@@ -79,10 +86,15 @@
       </GridPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+      <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
          <children>
-            <Button fx:id="taskButton" maxWidth="150.0" onAction="#handleCreateTask" style="-fx-font-size: 18; -fx-background-radius: 15; -fx-font-family: 'Mozilla Headline ExtraLight';" text="Crear tarea" />
+            <Label fx:id="messageLabel" text="Mensaje" visible="false" managed="false"
+                   style="-fx-text-fill: red; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
+            <Button fx:id="taskButton" maxWidth="150.0" onAction="#handleCreateTask"
+                    style="-fx-font-size: 18; -fx-background-radius: 15; -fx-font-family: 'Mozilla Headline ExtraLight';"
+                    text="Crear tarea" />
          </children>
-      </HBox>
+      </VBox>
    </bottom>
+
 </BorderPane>
