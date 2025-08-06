@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class CreateTaskController {
@@ -90,19 +89,16 @@ public class CreateTaskController {
         LocalDate today = LocalDate.now();
         LocalTime actualHour = LocalTime.now();
 
-        // Validar título
         if (titleField.getText().isEmpty()) {
             showMessage("El título no puede estar vacío");
             return false;
         }
 
-        // Validar descripción
         if (descriptionArea.getText().isEmpty()) {
             showMessage("La descripción no puede estar vacía");
             return false;
         }
 
-        // Validar fecha
         if (datePicker.getValue() == null) {
             showMessage("Escoja una fecha");
             return false;
@@ -146,11 +142,26 @@ public class CreateTaskController {
 
     private void clearFields(){
         titleField.clear();
+        titleField.setPromptText("Ingrese un título");
+
         descriptionArea.clear();
+        descriptionArea.setPromptText("Ingrese una descripción de la tarea");
+
         datePicker.setValue(null);
+        datePicker.setPromptText("Seleccione una fecha");
+
         hourBox.getSelectionModel().clearSelection();
+        hourBox.setPromptText("Seleccione hora");
+
         minuteBox.getSelectionModel().clearSelection();
+        minuteBox.setPromptText("Seleccione minuto");
+
         periodBox.getSelectionModel().clearSelection();
+        periodBox.setPromptText("AM / PM");
+
+        lowButton.setStyle("-fx-background-color: #B8C5D6; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;");
+        midButton.setStyle("-fx-background-color: #F5A623; -fx-text-fill: black; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;");
+        highButton.setStyle("-fx-background-color: #E94E4E; -fx-text-fill: white; -fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14; -fx-background-radius: 10;");
     }
 
     public void showMessage(String text) {
@@ -213,7 +224,6 @@ public class CreateTaskController {
         selectedButton.setStyle(selectedButton.getStyle() + " -fx-border-color: green; -fx-border-width: 3px; -fx-border-radius: 10;");
 
         priority = selectedPriority;
-        boolean isSelected = true;
     }
 
 

@@ -38,7 +38,7 @@
                <Font name="Poppins Bold" size="15.0" />
             </font>
          </Label>
-         <TextField fx:id="titleField" promptText="Ingrese el título" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         <TextField fx:id="titleField" promptText="Ingrese un título" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
          <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="1">
             <font>
                <Font name="Poppins Bold" size="15.0" />
@@ -50,7 +50,7 @@
                <Font name="Poppins Bold" size="15.0" />
             </font>
          </Label>
-         <DatePicker fx:id="datePicker" promptText="Seleccione fecha" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <DatePicker fx:id="datePicker" promptText="Seleccione una fecha" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <Label text="Hora límite:" GridPane.columnIndex="0" GridPane.rowIndex="3">
             <font>
                <Font name="Poppins Bold" size="15.0" />
@@ -72,7 +72,7 @@
             <children>
                <ComboBox fx:id="hourBox" promptText="Seleccione hora" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
                <ComboBox fx:id="minuteBox" promptText="Seleccione minuto" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
-               <ComboBox fx:id="periodBox" promptText="Seleccione periodo" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
+               <ComboBox fx:id="periodBox" promptText="AM / PM" style="-fx-font-family: 'Mozilla Headline ExtraLight'; -fx-font-size: 14;" />
             </children>
          </HBox>
          <rowConstraints>

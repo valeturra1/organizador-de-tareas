@@ -13,6 +13,10 @@ public class TaskManager {
         taskList.add(task);
     }
 
+    public void deleteTask(Task task){
+        taskList.remove(task);
+    }
+
     public ArrayList<Task> getTasks(){
         return taskList;
     }
