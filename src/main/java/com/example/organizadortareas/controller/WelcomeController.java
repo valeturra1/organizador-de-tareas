@@ -1,6 +1,7 @@
 package com.example.organizadortareas.controller;
 
 import com.example.organizadortareas.model.TaskManager;
+import com.example.organizadortareas.model.ThreadOverdueTasks;
 import com.example.organizadortareas.view.CreateTaskStage;
 import com.example.organizadortareas.view.TaskStage;
 import javafx.fxml.FXML;

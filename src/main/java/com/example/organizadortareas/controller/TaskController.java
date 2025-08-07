@@ -2,6 +2,7 @@ package com.example.organizadortareas.controller;
 
 import com.example.organizadortareas.model.Task;
 import com.example.organizadortareas.model.TaskManager;
+import com.example.organizadortareas.model.ThreadOverdueTasks;
 import com.example.organizadortareas.view.OverdueTasksStage;
 import com.example.organizadortareas.view.WelcomeStage;
 import javafx.application.Platform;
@@ -26,8 +27,10 @@ public class TaskController {
     @FXML private Button exitButton;
     @FXML private VBox taskListVBox;
     @FXML private StackPane taskContainer;
-    private TaskManager manager;
+    private TaskManager manager = new TaskManager();
     private ArrayList<Task> tasks;
+    private ThreadOverdueTasks threadOverdueTasks;
+    private OverdueTasksController overdueTasksController;
 
     @FXML
     public void initialize() {
@@ -68,6 +71,9 @@ public class TaskController {
     }
 
     public void printTask(Task currentTask, String priorityColor, String textFill){
+        if (threadOverdueTasks != null && threadOverdueTasks.isTaskOverdue(currentTask)){
+            return;
+        }
 
         Label title = new Label(currentTask.getTitle());
         title.setFont(Font.font("Poppins Bold", 20));
@@ -114,6 +120,7 @@ public class TaskController {
         delete.setOnAction(event -> {
             taskListVBox.getChildren().removeAll(title, description, dateAndTime, buttonHBox);
             manager.deleteTask(currentTask);
+            showTask();
         });
 
         buttonHBox.setAlignment(Pos.CENTER);
@@ -124,7 +131,7 @@ public class TaskController {
     @FXML
     private void handleViewOverdueTasks(){
         try{
-            OverdueTasksStage.getInstance().show();
+            OverdueTasksStage.getInstance(manager, this).show();
 
             Stage actual = (Stage) viewOverdueTasks.getScene().getWindow();
             actual.hide();
@@ -154,6 +161,14 @@ public class TaskController {
 
     public void setTaskManager(TaskManager manager) {
         this.manager = manager;
+    }
+
+    public void startOverdueTaskThread(OverdueTasksController overdueTasksController) {
+        this.overdueTasksController = overdueTasksController;
+
+        this.threadOverdueTasks = new ThreadOverdueTasks(manager, overdueTasksController, this);
+        this.threadOverdueTasks.setDaemon(true);
+        this.threadOverdueTasks.start();
     }
 
     public void updateTaskList() {

@@ -17,6 +17,7 @@ public class TaskStage extends Stage {
 
     public TaskStage(TaskManager manager) throws IOException {
         this.manager = manager;
+
         Font.loadFont(getClass().getResourceAsStream("/fonts/MozillaHeadline-ExtraLight.ttf"), 14);
         Font.loadFont(getClass().getResourceAsStream("/fonts/Poppins-Bold.ttf"), 14);
 
@@ -28,7 +29,6 @@ public class TaskStage extends Stage {
 
             controller = loader.getController();
             controller.setTaskManager(manager);
-            controller.updateTaskList();
 
         } catch (IOException e) {
             throw new IOException("Error while loading FXML file", e);
@@ -53,7 +53,7 @@ public class TaskStage extends Stage {
         private static TaskStage INSTANCE;
     }
 
-    public TaskController getController() {
+    public TaskController getController(){
         return controller;
     }
 }
