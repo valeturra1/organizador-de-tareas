@@ -1,5 +1,6 @@
 package com.example.organizadortareas.controller;
 
+import com.example.organizadortareas.model.SerializableFileHandler;
 import com.example.organizadortareas.model.TaskManager;
 import com.example.organizadortareas.model.ThreadOverdueTasks;
 import com.example.organizadortareas.view.CreateTaskStage;
@@ -13,7 +14,20 @@ import java.io.IOException;
 public class WelcomeController {
     @FXML private Button newTaskButton;
     @FXML private Button viewTasksButton;
-    TaskManager manager = new TaskManager();
+    private TaskManager manager;
+    private SerializableFileHandler serializableFileHandler;
+
+    @FXML
+    private void initialize(){
+        serializableFileHandler = new SerializableFileHandler();
+        TaskManager loadedManager = (TaskManager) serializableFileHandler.deserialize("task_manager.ser");
+
+        if (loadedManager != null) {
+            manager = loadedManager;
+        } else {
+            manager = new TaskManager();
+        }
+    }
 
     @FXML
     private void handleNewTask(){

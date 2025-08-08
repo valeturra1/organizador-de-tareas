@@ -1,5 +1,6 @@
 package com.example.organizadortareas.controller;
 
+import com.example.organizadortareas.model.SerializableFileHandler;
 import com.example.organizadortareas.model.Task;
 import com.example.organizadortareas.model.TaskManager;
 import com.example.organizadortareas.model.ThreadOverdueTasks;
@@ -30,9 +31,19 @@ public class OverdueTasksController {
     private ThreadOverdueTasks threadOverdueTasks;
     private TaskController taskController;
     private TaskManager manager;
+    private SerializableFileHandler serializableFileHandler;
 
     @FXML
     private void initialize(){
+        serializableFileHandler = new SerializableFileHandler();
+
+        TaskManager loadedManager = (TaskManager) serializableFileHandler.deserialize("task_manager.ser");
+        if (loadedManager != null) {
+            manager = loadedManager;
+        } else {
+            manager = new TaskManager();
+        }
+
         updateOverdueTaskList();
     }
 
@@ -140,7 +151,7 @@ public class OverdueTasksController {
     }
 
     public void updateOverdueTaskList() {
-        if (overdueTaskListVBox != null && manager != null) {
+        if (overdueTaskListVBox != null) {
             Platform.runLater(() -> {
                 showOverdueTasks();
             });

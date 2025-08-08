@@ -1,5 +1,6 @@
 package com.example.organizadortareas.controller;
 
+import com.example.organizadortareas.model.SerializableFileHandler;
 import com.example.organizadortareas.model.Task;
 import com.example.organizadortareas.model.TaskManager;
 import com.example.organizadortareas.view.TaskStage;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class CreateTaskController {
+public class CreateTaskController{
     @FXML private TextField titleField;
     @FXML private TextArea descriptionArea;
     @FXML private DatePicker datePicker;
@@ -35,10 +36,12 @@ public class CreateTaskController {
 
     private TaskManager manager;
     private TaskController taskController;
+    private SerializableFileHandler serializableFileHandler;
 
 
     @FXML
     public void initialize() {
+        serializableFileHandler = new SerializableFileHandler();
         titleField.textProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue.length() > 80) {
                 titleField.setText(oldValue);
@@ -73,6 +76,8 @@ public class CreateTaskController {
 
         Task task = new Task(title, description, date, hour, minute, period, priority);
         manager.addTask(task);
+
+        serializableFileHandler.serialize("task_manager.ser", manager);
 
         try {
             TaskController taskController = TaskStage.getInstance(manager).getController();

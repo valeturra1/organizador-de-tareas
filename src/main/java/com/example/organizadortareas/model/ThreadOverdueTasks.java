@@ -11,6 +11,7 @@ public class ThreadOverdueTasks extends Thread {
     private TaskManager manager;
     private TaskController taskController;
     private OverdueTasksController overdueTaskController;
+    private SerializableFileHandler serializableFileHandler;
 
     public ThreadOverdueTasks(TaskManager manager, OverdueTasksController overdueTasksController, TaskController taskController) {
         this.manager = manager;
@@ -23,7 +24,7 @@ public class ThreadOverdueTasks extends Thread {
         while (!isInterrupted()) {
             checkAndMoveOverdueTasks();
             try {
-                Thread.sleep(60000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 break;
             }
@@ -43,6 +44,10 @@ public class ThreadOverdueTasks extends Thread {
             if (isTaskOverdue(currentTask, today, now)) {
                 manager.addOverdueTask(currentTask);
                 manager.deleteTask(currentTask);
+
+                serializableFileHandler = new SerializableFileHandler();
+                serializableFileHandler.serialize("task_manager.ser", manager);
+
                 overdueTaskController.updateOverdueTaskList();
                 taskController.updateTaskList();
             }

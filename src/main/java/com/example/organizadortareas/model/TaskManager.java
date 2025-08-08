@@ -1,8 +1,9 @@
 package com.example.organizadortareas.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TaskManager {
+public class TaskManager implements Serializable {
     private ArrayList<Task> taskList;
     private ArrayList<Task> overdueTaskList;
 

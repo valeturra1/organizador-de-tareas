@@ -1,8 +1,9 @@
 package com.example.organizadortareas.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task {
+public class Task implements Serializable {
     private String title;
     private String description;
     private LocalDate date;
@@ -47,34 +48,6 @@ public class Task {
 
     public String getPriority() {
         return priority;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setHour(String hour) {
-        this.hour = hour;
-    }
-
-    public void setMinute(String minute) {
-        this.minute = minute;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
     }
 
     @Override
